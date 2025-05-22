@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <br>
+    <ion-title>Rick and Morty App - Camacho Ithan & Valenzuela Isaac</ion-title>
+    <br>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="searchCharacter()" placeholder="Buscar personaje"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let character of filteredCharacters">
+        <ion-card button (click)="goToDetails(character)">
+          <img [src]="character.image" alt="{{ character.name }}" />
+          <ion-card-header>
+            <ion-card-title>{{ character.name }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll (ionInfinite)="loadCharacters($event)" threshold="100px">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más personajes...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

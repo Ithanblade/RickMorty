@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <br>
+    <ion-title>{{ character?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="character">
+  <ion-card>
+    <img [src]="character.image" alt="{{ character.name }}">
+    <br>
+    <ion-card-header>
+      <ion-card-title><strong>Nombre: </strong> {{ character.name }}</ion-card-title>
+      <br>
+      <ion-card-subtitle><strong>Estado: </strong>{{ character.status }} 
+        <br>
+        <strong>Especie: </strong> {{ character.species }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Género:</strong> {{ character.gender }}</p>
+      <p><strong>Origen:</strong> {{ character.origin?.name }}</p>
+      <p><strong>Ubicación actual:</strong> {{ character.location?.name }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item>
+    <ion-label position="stacked">Comentario sobre {{ character.name }}</ion-label>
+    <ion-textarea [(ngModel)]="comment" placeholder="Escribe tu comentario aquí..."></ion-textarea>
+  </ion-item>
+
+  <ion-button expand="block" (click)="saveComment()">Guardar comentario e información</ion-button>
+</ion-content>
